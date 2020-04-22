@@ -7,7 +7,7 @@ export const AppRouter = () => {
   return (
     <Router history={history}>
       <Switch>
-        <Route path="/" component={HomePage} />
+        <Route path="/" exact component={HomePage} />
       </Switch>
     </Router>
   );
