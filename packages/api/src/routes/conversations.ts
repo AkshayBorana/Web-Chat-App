@@ -41,3 +41,12 @@ conversationsRouter.delete("/:conversationId", async (req, res, next) => {
     next(e);
   }
 });
+
+// getting list of all messages that belog to a particular conversation...
+conversationsRouter.get('/:conversationId/messages', async(req, res, next) => {
+  console.log(req.params);
+  const { conversationId } = req.params;
+  const conversation = await Conversation.findByPk(conversationId);
+  const messages = await conversation.$get('messages');
+  res.json(messages);
+})
