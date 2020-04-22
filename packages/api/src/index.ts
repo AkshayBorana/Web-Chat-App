@@ -1,7 +1,8 @@
 import express from "express";
 import { sequelize } from "./database";
 import bodyParser from "body-parser";
-import { usersRouter } from "./routes/user";
+import { usersRouter } from "./routes/users";
+import { conversationsRouter } from "./routes/conversations";
 
 const runApp = async () => {
   const app = express();
@@ -15,6 +16,7 @@ const runApp = async () => {
 
   app.use(bodyParser.json());
   app.use("/users", usersRouter);
+  app.use("/conversations", conversationsRouter);
   app.listen(4200);
   console.log(`listening to port 4200`);
 };
