@@ -7,3 +7,7 @@ export interface Message {
   id: string;
   content: string;
 }
+
+export interface Params {
+  conversationId: string;
+}
