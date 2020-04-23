@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import { sequelize } from "./database";
 import bodyParser from "body-parser";
 import { usersRouter } from "./routes/users";
@@ -15,6 +16,7 @@ const runApp = async () => {
     console.log(e);
   }
 
+  app.use(cors());
   app.use(bodyParser.json());
   app.use("/users", usersRouter);
   app.use("/conversations", conversationsRouter);
