@@ -20,6 +20,16 @@ class API {
     );
     return res.data;
   }
+
+  // 2. Endpoint to create a message
+  async createMessage(conversationId: string, content: string) {
+    const res = await axios.post(`${this.prefix}/messages`, {
+      content,
+      conversationId,
+      userId: "e9c71165-8aed-4a42-9deb-4af18d96ac52"
+    });
+    return res.data;
+  }
 }
 
 export const api = new API();

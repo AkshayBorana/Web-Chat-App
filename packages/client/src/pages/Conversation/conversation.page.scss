@@ -12,7 +12,7 @@
   }
 
   &-message {
-    height: calc(100% - var(--header-title));
+    height: calc(100% - (var(--header-title) * 2));
     background: var(--light-gray);
     padding: 20px;
 
@@ -26,6 +26,24 @@
         padding: 5px 15px;
         border-radius: 12px;
       }
+    }
+  }
+
+  &-footer {
+    height: var(--header-title);
+    background: var(--white);
+    display: flex;
+    padding: 10px;
+
+    form {
+      width: 100%;
+    }
+
+    &-input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
     }
   }
 }

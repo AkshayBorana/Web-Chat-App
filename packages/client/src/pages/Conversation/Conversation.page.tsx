@@ -3,6 +3,7 @@ import { api } from "../../lib/API";
 import { Conversation, Message, Params } from "../../lib/types";
 import { useParams } from "react-router";
 import "./conversation.page.scss";
+import { SendMessage } from "./SendMEssage.page";
 
 export const ConversationPage = () => {
   const [conversation, updateConversation] = useState<Conversation>();
@@ -17,7 +18,6 @@ export const ConversationPage = () => {
 
     // Based on the above conversation, display all the related messages to it...
     const messgRes = await api.getMessages(conversationId);
-    console.log(messgRes);
     updateMessages(messgRes);
   };
 
@@ -47,7 +47,14 @@ export const ConversationPage = () => {
       </ul>
 
       {/* footer */}
-      <footer className="conversation-footer"></footer>
+      <footer className="conversation-footer">
+        <SendMessage
+          conversationId={conversationId}
+          onNewMessage={message => {
+            updateMessages(messages => [...messages, message]);
+          }}
+        />
+      </footer>
     </main>
   );
 };

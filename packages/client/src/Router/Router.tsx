@@ -1,8 +1,8 @@
 import React from "react";
 import { Router, Switch, Route } from "react-router-dom";
 import { history } from "./history";
-import { HomePage } from "../pages/Home/home.page";
-import { ConversationPage } from "../pages/Conversation/conversation.page";
+import { HomePage } from "../pages/Home/Home.page";
+import { ConversationPage } from "../pages/Conversation/Conversation.page";
 
 export const AppRouter = () => {
   return (
