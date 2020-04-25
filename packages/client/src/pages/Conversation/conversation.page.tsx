@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { api } from "../../lib/API";
 import { Conversation, Message, Params } from "../../lib/types";
 import { useParams } from "react-router";
+import "./conversation.page.scss";
 
 export const ConversationPage = () => {
   const [conversation, updateConversation] = useState<Conversation>();
@@ -11,6 +12,7 @@ export const ConversationPage = () => {
   const loadInitialData = async () => {
     // displaying one single conversation with an ID...
     const convoRes = await api.getConversation(conversationId);
+    if (!convoRes) return;
     updateConversation(convoRes);
 
     // Based on the above conversation, display all the related messages to it...
@@ -25,13 +27,27 @@ export const ConversationPage = () => {
   }, []);
 
   return (
-    <div>
-      {conversation && <h1>Conversation: {conversation.name}</h1>}
-      <ul className="messages">
+    <main className="conversation">
+      {/* header */}
+      <header className="conversation-name">
+        {conversation ? (
+          <>Conversation {conversation.name}</>
+        ) : (
+          <h1>Could not find the conversation</h1>
+        )}
+      </header>
+
+      {/* Display's the list of messages */}
+      <ul className="conversation-message">
         {messages.map(message => (
-          <li>{message.content}</li>
+          <li className="conversation-message-list">
+            <span>{message.content}</span>
+          </li>
         ))}
       </ul>
-    </div>
+
+      {/* footer */}
+      <footer className="conversation-footer"></footer>
+    </main>
   );
 };

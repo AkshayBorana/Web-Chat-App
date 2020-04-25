@@ -1,3 +1,19 @@
+@import "./reset.scss";
+@import "./css-var.scss";
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
 body {
-    background: #ddd;
+  background: #ddd;
+  margin: 0px;
+  font-family: "Roboto", sans-serif;
 }

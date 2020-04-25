@@ -1,0 +1,31 @@
+.conversation {
+  width: calc(100% - var(--side-bar));
+  height: 100%;
+  margin-left: var(--side-bar);
+
+  &-name {
+    height: var(--header-title);
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background: var(--white);
+  }
+
+  &-message {
+    height: calc(100% - var(--header-title));
+    background: var(--light-gray);
+    padding: 20px;
+
+    &-list {
+      height: 30px;
+      line-height: 30px;
+      margin: 0px 0px 5px 0px;
+      span {
+        background: var(--dark-blue);
+        color: var(--white);
+        padding: 5px 15px;
+        border-radius: 12px;
+      }
+    }
+  }
+}

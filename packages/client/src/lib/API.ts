@@ -5,8 +5,12 @@ class API {
 
   // 1. Endpoint to display only one conversation/conversation details...
   async getConversation(convoId: string) {
-    const res = await axios.get(`${this.prefix}/conversations/${convoId}`);
-    return res.data;
+    try {
+      const res = await axios.get(`${this.prefix}/conversations/${convoId}`);
+      return res.data;
+    } catch (e) {
+      return null;
+    }
   }
 
   // 2. Endpoint to display all the messages in a particular conversation...
