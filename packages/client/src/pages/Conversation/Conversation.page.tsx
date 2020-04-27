@@ -4,6 +4,7 @@ import { Conversation, Message, Params } from "../../lib/types";
 import { useParams } from "react-router";
 import "./conversation.page.scss";
 import { SendMessage } from "./SendMEssage.page";
+import { Sidebar } from "../../components/Sidebar/Sidebar";
 
 export const ConversationPage = () => {
   const [conversation, updateConversation] = useState<Conversation>();
@@ -24,37 +25,40 @@ export const ConversationPage = () => {
   useEffect(() => {
     // just gets loaded for the first time...
     loadInitialData();
-  }, []);
+  }, [conversationId]); // update when URL params change, i.e conversationId changes...
 
   return (
-    <main className="conversation">
-      {/* header */}
-      <header className="conversation-name">
-        {conversation ? (
-          <>Conversation {conversation.name}</>
-        ) : (
-          <h1>Could not find the conversation</h1>
-        )}
-      </header>
+    <div className="grid-container">
+      <Sidebar></Sidebar>
+      <main className="conversation">
+        {/* header */}
+        <header className="conversation-name">
+          {conversation ? (
+            <>Conversation {conversation.name}</>
+          ) : (
+            <h1>Could not find the conversation</h1>
+          )}
+        </header>
 
-      {/* Display's the list of messages */}
-      <ul className="conversation-message">
-        {messages.map(message => (
-          <li className="conversation-message-list">
-            <span>{message.content}</span>
-          </li>
-        ))}
-      </ul>
+        {/* Display's the list of messages */}
+        <ul className="conversation-message">
+          {messages.map(message => (
+            <li className="conversation-message-list">
+              <span>{message.content}</span>
+            </li>
+          ))}
+        </ul>
 
-      {/* footer */}
-      <footer className="conversation-footer">
-        <SendMessage
-          conversationId={conversationId}
-          onNewMessage={message => {
-            updateMessages(messages => [...messages, message]);
-          }}
-        />
-      </footer>
-    </main>
+        {/* footer */}
+        <footer className="conversation-footer">
+          <SendMessage
+            conversationId={conversationId}
+            onNewMessage={message => {
+              updateMessages(messages => [...messages, message]);
+            }}
+          />
+        </footer>
+      </main>
+    </div>
   );
 };

@@ -1,9 +1,16 @@
-.conversation {
-  width: calc(100% - var(--side-bar));
+.grid-container {
+  display: grid;
+  grid-template-columns: var(--side-bar) auto;
   height: 100%;
-  margin-left: var(--side-bar);
+}
+
+.conversation {
+  // width: calc(100% - var(--side-bar));
+  // height: 100%;
+  // margin-left: var(--side-bar);
 
   &-name {
+    color: var(--dark-blue);
     height: var(--header-title);
     display: flex;
     align-items: center;

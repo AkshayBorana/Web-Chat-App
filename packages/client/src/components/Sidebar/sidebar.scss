@@ -1,0 +1,20 @@
+.side-bar {
+  background: var(--white);
+  border-right: 1px solid var(--light-gray);
+}
+
+.convo-list {
+  height: var(--header-title);
+  line-height: var(--header-title);
+
+  &-name {
+    padding: 0px 20px;
+    display: block;
+    border-bottom: 1px solid var(--light-gray);
+    color: var(--dark-blue);
+
+    &:hover {
+      background: var(--light-gray);
+    }
+  }
+}
