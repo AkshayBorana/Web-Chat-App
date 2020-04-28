@@ -3,6 +3,34 @@
   border-right: 1px solid var(--light-gray);
 }
 
+.add-convo {
+  height: 60px;
+  line-height: 60px;
+  box-sizing: content-box;
+  border-bottom: 1px solid var(--light-gray);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 20px;
+
+  &-btn {
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid var(--dark-blue);
+    background: transparent;
+    color: var(--dark-blue);
+    line-height: 40px;
+    width: 175px;
+    text-align: center;
+
+    &:hover {
+      background: var(--dark-blue);
+      border: none;
+      color: var(--white);
+    }
+  }
+}
+
 .convo-list {
   height: var(--header-title);
   line-height: var(--header-title);

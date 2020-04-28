@@ -23,3 +23,15 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
+
+button {
+  cursor: pointer;
+}
+
+.convo-title {
+  color: var(--dark-blue);
+  height: var(--header-title);
+  display: flex;
+  align-items: center;
+  background: var(--white);
+}

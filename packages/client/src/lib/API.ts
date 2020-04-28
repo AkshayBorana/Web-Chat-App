@@ -40,6 +40,16 @@ class API {
       return null;
     }
   }
+
+  //5. Endpoint to create a conversation...
+  async createConversation(name: string) {
+    try {
+      const res = await axios.post(`${this.prefix}/conversations`, { name });
+      return res.data;
+    } catch (e) {
+      return null;
+    }
+  }
 }
 
 export const api = new API();

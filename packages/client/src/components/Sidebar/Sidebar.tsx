@@ -19,6 +19,16 @@ export const Sidebar = () => {
 
   return (
     <aside className="side-bar">
+      {/* create a new conversation */}
+      <div className="add-convo">
+        <Link
+          to={`/conversation/create-conversation`}
+          className="add-convo-btn"
+        >
+          + Add a Conversation
+        </Link>
+      </div>
+      {/* list of conversations... */}
       <ul>
         {conversation.map(convo => (
           <li className="convo-list">

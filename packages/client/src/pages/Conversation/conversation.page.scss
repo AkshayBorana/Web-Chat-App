@@ -5,17 +5,8 @@
 }
 
 .conversation {
-  // width: calc(100% - var(--side-bar));
-  // height: 100%;
-  // margin-left: var(--side-bar);
-
   &-name {
-    color: var(--dark-blue);
-    height: var(--header-title);
-    display: flex;
-    align-items: center;
     padding: 20px;
-    background: var(--white);
   }
 
   &-message {
@@ -52,5 +43,27 @@
       border-radius: 20px;
       border: 1px solid var(--border-color);
     }
+  }
+}
+
+.create-convo {
+  padding-left: 20px;
+
+  &-input {
+    height: 40px;
+    padding-left: 10px;
+    width: 250px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    margin-right: 20px;
+  }
+
+  &-btn {
+    width: 60px;
+    height: 40px;
+    border-radius: 4px;
+    background: none;
+    border: 1px solid var(--dark-blue);
+    color: var(--dark-blue);
   }
 }
