@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { User } from "../models/User";
+import bcrypt from "bcryptjs";
 
 export const usersRouter = Router();
 
@@ -19,7 +20,16 @@ usersRouter.get("/:userId", async (req, res, _next) => {
 //create a user...
 usersRouter.post("/", async (req, res, next) => {
   try {
-    const user = new User(req.body);
+    const { password: plain, ...userData } = req.body;
+
+    const salt = bcrypt.genSaltSync(10);
+    const password = bcrypt.hashSync(plain, salt);
+
+    const user = new User({
+      ...userData,
+      password
+    });
+
     await user.save();
     res.json(user);
   } catch (e) {

@@ -5,6 +5,6 @@
     "rootDir": "./src",
     "lib": ["es2015"]
   },
-  "include": ["./src/**/*.ts", "../client/src/pages/Conversation/Conversation.page.tsx", "../client/src/pages/Home/Home.page.tsx"],
+  "include": ["./src/**/*.ts"],
   "exclude": ["./tests"]
 }
