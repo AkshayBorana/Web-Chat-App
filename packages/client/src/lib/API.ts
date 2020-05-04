@@ -50,6 +50,18 @@ class API {
       return null;
     }
   }
+
+  async login(email: string, password: string) {
+    try {
+      const res = await axios.post(`${this.prefix}/auth/login`, {
+        email,
+        password
+      });
+      return res.data;
+    } catch (e) {
+      return null;
+    }
+  }
 }
 
 export const api = new API();

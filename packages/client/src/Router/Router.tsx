@@ -3,6 +3,7 @@ import { Router, Switch, Route } from "react-router-dom";
 import { history } from "./history";
 import { HomePage } from "../pages/Home/Home.page";
 import { ConversationPage } from "../pages/Conversation/Conversation.page";
+import { LoginPage } from "../pages/Login/Login.page";
 
 export const AppRouter = () => {
   return (
@@ -14,6 +15,7 @@ export const AppRouter = () => {
           path="/conversation/:conversationId"
           component={ConversationPage}
         />
+        <Route path="/login" component={LoginPage}></Route>
       </Switch>
     </Router>
   );
