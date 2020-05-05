@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { Conversation } from "../models/Conversation";
+import { middlewareConvo } from "../middleware/authConversation";
 
 export const conversationsRouter = Router();
 
@@ -14,6 +15,7 @@ conversationsRouter.post("/", async (req, res, next) => {
   try {
     const conversation = new Conversation(req.body);
     await conversation.save();
+    await conversation.$add("user", res.locals.user);
     res.json(conversation);
   } catch (e) {
     next(e);
@@ -21,33 +23,45 @@ conversationsRouter.post("/", async (req, res, next) => {
 });
 
 //3. get a conversation with a particular id...
-conversationsRouter.get("/:conversationId", async (req, res, _next) => {
-  const { conversationId } = req.params;
-  const conversation = await Conversation.findByPk(conversationId);
-  res.json(conversation);
-});
+conversationsRouter.get(
+  "/:conversationId",
+  middlewareConvo,
+  async (req, res, _next) => {
+    const { conversationId } = req.params;
+    const conversation = await Conversation.findByPk(conversationId);
+    res.json(conversation);
+  }
+);
 
 // 4. Delete a conversation...
-conversationsRouter.delete("/:conversationId", async (req, res, next) => {
-  try {
-    Conversation.destroy({
-      where: { id: req.params.conversationId }
-    });
+conversationsRouter.delete(
+  "/:conversationId",
+  middlewareConvo,
+  async (req, res, next) => {
+    try {
+      Conversation.destroy({
+        where: { id: req.params.conversationId }
+      });
 
-    res.json({
-      message: `Successfully deleted`
-    });
-  } catch (e) {
-    next(e);
+      res.json({
+        message: `Successfully deleted`
+      });
+    } catch (e) {
+      next(e);
+    }
   }
-});
+);
 
 // getting list of all messages that belog to a particular conversation...
-conversationsRouter.get("/:conversationId/messages", async (req, res, next) => {
-  const { conversationId } = req.params;
-  const conversation = await Conversation.findByPk(conversationId);
-  if (!conversation)
-    return next(new Error(`No conversation with this id found.`));
-  const messages = await conversation.$get("messages");
-  res.json(messages);
-});
+conversationsRouter.get(
+  "/:conversationId/messages",
+  middlewareConvo,
+  async (req, res, next) => {
+    const { conversationId } = req.params;
+    const conversation = await Conversation.findByPk(conversationId);
+    if (!conversation)
+      return next(new Error(`No conversation with this id found.`));
+    const messages = await conversation.$get("messages");
+    res.json(messages);
+  }
+);
