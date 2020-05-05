@@ -7,6 +7,7 @@ import { conversationsRouter } from "./routes/conversations";
 import { messagesRouter } from "./routes/messages";
 import { authRouter } from "./routes/auth";
 import { middlewareAuth } from "./middleware/auth";
+import { meRouter } from "./routes/me";
 
 const runApp = async () => {
   const app = express();
@@ -22,6 +23,7 @@ const runApp = async () => {
   app.use(bodyParser.json());
   app.use("/auth", authRouter);
   app.use("/users", middlewareAuth, usersRouter);
+  app.use("me", middlewareAuth, meRouter);
   app.use("/conversations", middlewareAuth, conversationsRouter);
   app.use("/messages", middlewareAuth, messagesRouter);
   app.listen(4200);

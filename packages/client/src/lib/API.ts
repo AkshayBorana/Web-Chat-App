@@ -1,4 +1,5 @@
 import axios from "axios";
+import { setMe, getMe } from "../config";
 
 class API {
   prefix: string = `http://localhost:4200`;
@@ -16,7 +17,7 @@ class API {
   // 3. Endpoint to create a message
   async createMessage(conversationId: string, content: string) {
     return this.request("post", "messages", {
-      userId: "e9c71165-8aed-4a42-9deb-4af18d96ac52",
+      userId: getMe()!.id,
       conversationId,
       content
     });
@@ -35,6 +36,13 @@ class API {
   // 6. Endpoint to login...
   async login(email: string, password: string) {
     return this.request("post", "/auth/login", { email, password });
+  }
+
+  // 2. Endpoint to user details...
+  async me() {
+    const me = await this.request("get", "/me");
+    setMe(me);
+    return me;
   }
 
   // Wrapper function...
